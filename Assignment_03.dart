@@ -13,6 +13,8 @@ class MyState extends State<Widget3> {
   var x = TextEditingController();
   String v = "";
   String v1 = "";
+  String op = "";
+  double r = 0;
   @override
   Widget build(BuildContext context) {
     return (MaterialApp(
@@ -83,6 +85,7 @@ class MyState extends State<Widget3> {
                         setState(() {
                           v =x.text;
                           x.text="";
+                          op='+';
                         });
                       }),
                       child: const Text(
@@ -148,6 +151,7 @@ class MyState extends State<Widget3> {
                         setState(() {
                           v =x.text;
                           x.text="";
+                           op='-';
                         });
                       }),
                       child: const Text(
@@ -213,6 +217,7 @@ class MyState extends State<Widget3> {
                         setState(() {
                           v =x.text;
                           x.text="";
+                           op='x';
                         });
                       }),
                       child: const Text(
@@ -248,6 +253,7 @@ class MyState extends State<Widget3> {
                         setState(() {
                           v =x.text;
                           x.text="";
+                           op='/';
                         });
                       }),
                       child: const Text(
@@ -263,8 +269,22 @@ class MyState extends State<Widget3> {
                         setState(() {
                           v1 =x.text;
                           int z= 0 ;
-                          z=int.parse(v)+int.parse(v1);
-                          x.text=""+z.toString();
+                          if(op=='+'){
+                            z=int.parse(v)+int.parse(v1);
+                            x.text=""+z.toString();
+                          }
+                          else if( op=='-'){
+                            z=int.parse(v)-int.parse(v1);
+                            x.text=""+z.toString();
+                          }
+                          else if( op=='x'){
+                            z=int.parse(v)*int.parse(v1);
+                            x.text=""+z.toString();
+                          }
+                          else if( op=='/'){
+                            r=int.parse(v)/int.parse(v1);
+                            x.text=""+r.toString();
+                          }  
                         });
                       }),
                       child: const Text(
@@ -283,7 +303,7 @@ class MyState extends State<Widget3> {
                         });
                       }),
                       child: const Text(
-                        'clear',
+                        'AC',
                         style: TextStyle(fontSize: 20),
                       ),
                     ),
